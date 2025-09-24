@@ -29,7 +29,7 @@
       "id": "asset-library",
       "title": "My Assets",
       "environments": [
-          "edit"
+          "edit","dev", "preview"
       ],
       "url": "https://experience.adobe.com/solutions/CQ-helix-assets-addon/static-assets/resources/asset-selector.html",
       "isPalette": true,
