@@ -7,7 +7,7 @@
       "id": "da-plugin-demo",
       "title": "Plugin demo",
       "environments": ["edit"],
-      "daLibrary": true,
+      "daLibrary": false,
       "url": "https://main--da-block-collection--aemsites.hlx.live/tools/demo/demo.html"
     },
     {
@@ -20,7 +20,7 @@
       "id": "aem-labs",
       "title": "AEM Labs",
       "environments": ["edit"],
-      "daLibrary": true,
+      "daLibrary": false,
       "experience": "window",
       "url": "https://labs.aem.live",
       "icon": "https://main--da-block-collection--aemsites.aem.live/media/media_16e7a2074aac8a0f09c8c495ea7acb5fbc0adade4.png"
