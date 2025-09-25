@@ -34,12 +34,13 @@
       "passConfig": true,
       "paletteRect": "top: 50px; bottom: 10px; right: 10px; left: auto; width:400px; height: calc(100vh - 60px)"
     },
-    {
-      "id": "library",
+ {
+      "id": "block-library",
       "title": "Library",
-      "environments": ["preview"],
-      "url": "/tools/sidekick/library.html"
-    }
+      "environments": ["preview","edit"],
+      "url": "https://main--dabc-training--iain-mag.hlx.page/tools/sidekick/library.html",
+      "passConfig": true
+}
   ],
   "apps": [
     {
