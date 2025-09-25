@@ -1,19 +1,19 @@
 {
-  "project": "DA Block Collection",
+  "project": "iain-mag / dabc-training",
   "editUrlLabel": "Document Authoring",
-  "editUrlPattern": "https://da.live/edit#/{owner}/{repo}/{path}"
+  "editUrlPattern": "https://da.live/edit#/{owner}/{repo}/{path}",
   "plugins": [
     {
       "id": "da-plugin-demo",
       "title": "Plugin demo",
       "environments": ["edit"],
       "daLibrary": false,
-      "url": "https://main--da-block-collection--aemsites.hlx.live/tools/demo/demo.html"
+      "url": "https://main--dabc-training--iain-mag.hlx.live/tools/demo/demo.html"
     },
     {
       "id": "experimentation",
       "titleI18n": { "en": "Experimentation" },
-      "environments": [ "dev", "preview" ],
+      "environments": ["dev", "preview"],
       "event": "experimentation"
     },
     {
@@ -22,35 +22,29 @@
       "environments": ["edit"],
       "daLibrary": false,
       "experience": "window",
-      "url": "https://labs.aem.live",
-      "icon": "https://main--da-block-collection--aemsites.aem.live/media/media_16e7a2074aac8a0f09c8c495ea7acb5fbc0adade4.png"
+      "url": "https://labs.aem.live"
     },
     {
       "id": "asset-library",
       "title": "My Assets",
-      "environments": [
-          "edit"
-      ],
+      "environments": ["edit"],
       "url": "https://experience.adobe.com/solutions/CQ-helix-assets-addon/static-assets/resources/asset-selector.html",
       "isPalette": true,
-      "includePaths": [
-         "**/*.docx"
-      ],
+      "includePaths": ["**/*.docx"],
       "passConfig": true,
       "paletteRect": "top: 50px; bottom: 10px; right: 10px; left: auto; width:400px; height: calc(100vh - 60px)"
-      }
+    }
   ],
   "apps": [
     {
       "title": "App demo",
       "description": "This is a sample app using the DA SDK.",
-      "url": "https://da.live/app/aemsites/da-block-collection/tools/demo-app"
+      "url": "https://da.live/app/iain-mag/dabc-training/tools/demo-app"
     },
     {
       "title": "Tag browser",
-      "image": "https://main--da-block-collection--aemsites.hlx.page/media_1061934561e8a4f01907e616a0ce0e4b74d63b92e.jpeg",
       "description": "Manage your tags",
-      "url": "https://da.live/app/aemsites/da-block-collection/tools/tags"
+      "url": "https://da.live/app/iain-mag/dabc-training/tools/tags"
     }
   ]
 }
