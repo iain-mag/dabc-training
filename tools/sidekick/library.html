@@ -12,35 +12,41 @@
 </head>
 <body>
   <script>
-    // --- minimal on-load URL normalizer ---
     const ORG  = 'iain-mag';
     const REPO = 'dabc-training';
     const PREFIX = `/${ORG}/${REPO}/`;
     const SITE_ORIGIN = `https://main--${REPO}--${ORG}.aem.page`;
 
-    function fixUrl(u) {
-      const x = new URL(u, SITE_ORIGIN);
-      if (x.pathname.startsWith(PREFIX)) x.pathname = x.pathname.slice(PREFIX.length - 1); // remove "/org/repo"
-      return x.toString();
+    function fixUrl(input) {
+      // Build absolute URL using the site origin for relatives
+      const u = new URL(input, SITE_ORIGIN);
+      const host = u.hostname;
+
+      // Only rewrite paths on aem.page / aem.live; NEVER touch content.da.live, etc.
+      const isAemHost = host.endsWith('.aem.page') || host.endsWith('.aem.live');
+      if (isAemHost && u.pathname.startsWith(PREFIX)) {
+        u.pathname = u.pathname.slice(PREFIX.length - 1); // remove "/org/repo"
+      }
+      return u.toString();
     }
 
-    // Patch fetch (covers library previews/thumbnails loaded via fetch)
+    // Patch fetch
     const _fetch = window.fetch;
     window.fetch = (input, init) => {
       try {
-        const url = input && input.url ? input.url : input;
+        const url = (input && input.url) ? input.url : input;
         return _fetch(fixUrl(url), init);
       } catch { return _fetch(input, init); }
     };
 
-    // Patch XHR (covers any legacy XHR usage)
+    // Patch XHR
     const _open = XMLHttpRequest.prototype.open;
     XMLHttpRequest.prototype.open = function(method, url, ...rest) {
       try { url = fixUrl(url); } catch {}
       return _open.call(this, method, url, ...rest);
     };
 
-    // One-time sweep for href/src already in DOM (covers anchors/images)
+    // One-time sweep for existing href/src
     function sweep(root=document) {
       root.querySelectorAll('a[href], img[src], link[href], source[src]').forEach(el => {
         if (el.hasAttribute('href')) el.href = fixUrl(el.getAttribute('href'));
@@ -49,7 +55,7 @@
     }
     sweep();
 
-    // --- render the library from your absolute DA JSON ---
+    // Render the Library from your absolute DA JSON (won't be rewritten)
     const el = document.createElement('sidekick-library');
     el.config = {
       base: 'https://content.da.live/iain-mag/dabc-training/docs/library/blocks.json'
