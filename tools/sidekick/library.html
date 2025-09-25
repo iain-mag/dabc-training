@@ -1,42 +1,60 @@
-!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <meta name="Description" content="AEM Sidekick Library" />
-    <meta name="robots" content="noindex" />
-    <base href="/" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Sidekick Library</title>
+  <script type="module" src="https://www.aem.live/tools/sidekick/library/index.js"></script>
+  <style>
+    html, body { margin:0; height:100%; background:#ededed; font-family:system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <script>
+    // --- minimal on-load URL normalizer ---
+    const ORG  = 'iain-mag';
+    const REPO = 'dabc-training';
+    const PREFIX = `/${ORG}/${REPO}/`;
+    const SITE_ORIGIN = `https://main--${REPO}--${ORG}.aem.page`;
 
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-        background-color: #ededed;
-        height: 100%;
-      }
-      
-      helix-sidekick { display: none }
-    </style>
-    <title>Sidekick Library</title>
-  </head>
+    function fixUrl(u) {
+      const x = new URL(u, SITE_ORIGIN);
+      if (x.pathname.startsWith(PREFIX)) x.pathname = x.pathname.slice(PREFIX.length - 1); // remove "/org/repo"
+      return x.toString();
+    }
 
-  <body>
-    <script
-      type="module"
-      src="https://www.aem.live/tools/sidekick/library/index.js"
-    ></script>
-    <script>
-      const library = document.createElement('sidekick-library')
-      library.config = {
-        base: 'https://content.da.live/iain-mag/dabc-training/docs/library/blocks.json',
-      }
+    // Patch fetch (covers library previews/thumbnails loaded via fetch)
+    const _fetch = window.fetch;
+    window.fetch = (input, init) => {
+      try {
+        const url = input && input.url ? input.url : input;
+        return _fetch(fixUrl(url), init);
+      } catch { return _fetch(input, init); }
+    };
 
-      document.body.prepend(library)
-    </script>
-  </body>
+    // Patch XHR (covers any legacy XHR usage)
+    const _open = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function(method, url, ...rest) {
+      try { url = fixUrl(url); } catch {}
+      return _open.call(this, method, url, ...rest);
+    };
+
+    // One-time sweep for href/src already in DOM (covers anchors/images)
+    function sweep(root=document) {
+      root.querySelectorAll('a[href], img[src], link[href], source[src]').forEach(el => {
+        if (el.hasAttribute('href')) el.href = fixUrl(el.getAttribute('href'));
+        if (el.hasAttribute('src'))  el.src  = fixUrl(el.getAttribute('src'));
+      });
+    }
+    sweep();
+
+    // --- render the library from your absolute DA JSON ---
+    const el = document.createElement('sidekick-library');
+    el.config = {
+      base: 'https://content.da.live/iain-mag/dabc-training/docs/library/blocks.json'
+    };
+    document.body.prepend(el);
+  </script>
+</body>
 </html>
