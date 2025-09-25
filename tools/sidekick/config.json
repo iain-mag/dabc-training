@@ -37,7 +37,7 @@
     {
       "id": "library",
       "title": "Library",
-      "environments": ["edit"],
+      "environments": ["preview"],
       "url": "/tools/sidekick/library.html",
       "includePaths": ["**/*.docx"]
     }
