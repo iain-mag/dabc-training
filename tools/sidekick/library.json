@@ -1,0 +1,11 @@
+{
+  "categories": [
+    {
+      "title": "Basics",
+      "blocks": [
+        { "name": "Hero", "path": "/docs/examples/hero.docx" },
+        { "name": "Columns", "path": "/docs/examples/columns.docx" }
+      ]
+    }
+  ]
+}
