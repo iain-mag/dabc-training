@@ -38,8 +38,7 @@
       "id": "library",
       "title": "Library",
       "environments": ["preview"],
-      "url": "/tools/sidekick/library.html",
-      "includePaths": ["**/*.docx"]
+      "url": "/tools/sidekick/library.html"
     }
   ],
   "apps": [
