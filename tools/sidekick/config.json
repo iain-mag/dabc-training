@@ -6,7 +6,7 @@
     {
       "id": "da-plugin-demo",
       "title": "Plugin demo",
-      "environments": ["edit","preview"],
+      "environments": ["edit"],
       "daLibrary": false,
       "url": "https://main--dabc-training--iain-mag.hlx.live/tools/demo/demo.html"
     },
@@ -19,7 +19,7 @@
     {
       "id": "aem-labs",
       "title": "AEM Labs",
-      "environments": ["edit","preview"],
+      "environments": ["edit"],
       "daLibrary": false,
       "experience": "window",
       "url": "https://labs.aem.live"
@@ -33,6 +33,13 @@
       "includePaths": ["**/*.docx"],
       "passConfig": true,
       "paletteRect": "top: 50px; bottom: 10px; right: 10px; left: auto; width:400px; height: calc(100vh - 60px)"
+    }
+    {
+      "id": "library",
+      "title": "Library",
+      "environments": ["edit"],
+      "url": "/tools/sidekick/library.html",
+      "includePaths": ["**/*.docx"]
     }
   ],
   "apps": [
