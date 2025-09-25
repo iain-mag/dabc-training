@@ -26,17 +26,18 @@
   </head>
 
   <body>
-    <script
-      type="module"
-      src="https://www.aem.live/tools/sidekick/library/index.js"
-    ></script>
-    <script>
-      const library = document.createElement('sidekick-library')
-      library.config = {
-        base: '/docs/library/blocks.json',
-      }
+  <script>
+  const params = new URLSearchParams(location.search);
+  // Sidekick passes the full page URL (on aem.page or aem.live)
+  const current = params.get('url');
 
-      document.body.prepend(library)
-    </script>
+  // Fallbacks if url isn't present (e.g., opened directly)
+  const siteOrigin = current ? new URL(current).origin : location.origin;
+
+  const el = document.createElement('sidekick-library');
+  // Now 'base' is relative to the actual site, not the hlx host serving this iframe
+  el.config = { base: `${siteOrigin}/docs/library/blocks.json` };
+  document.body.prepend(el);
+</script>
   </body>
 </html>
