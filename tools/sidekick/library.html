@@ -1,22 +1,9 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>Sidekick Library</title>
-    <style>
-      html, body { height: 100%; margin: 0; background: #ededed; font-family: system-ui, sans-serif; }
-      /* No need to hide the toolbar here; this runs in a panel iframe */
-    </style>
-    <script type="module" src="https://www.aem.live/tools/sidekick/library/index.js"></script>
-  </head>
-  <body>
-    <script>
-      const el = document.createElement('sidekick-library');
-      // IMPORTANT: point to your actual library JSON
-      el.config = { base: '/tools/sidekick/library.json' };
-      document.body.prepend(el);
-    </script>
-  </body>
-</html>
+<script type="module" src="https://www.aem.live/tools/sidekick/library/index.js"></script>
+<script>
+  const el = document.createElement('sidekick-library');
+  // Use the sheet’s JSON export (from DA: Share → Copy JSON link)
+  el.config = {
+    base: 'https://content.da.live/iain-mag/dabc-training/docs/library/blocks.json'
+  };
+  document.body.prepend(el);
+</script>
