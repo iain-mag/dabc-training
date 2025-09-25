@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta name="Description" content="AEM Sidekick Library!!!!" />
+    <meta name="Description" content="AEM Sidekick Library" />
     <meta name="robots" content="noindex" />
     <base href="/" />
 
@@ -26,8 +26,17 @@
   </head>
 
   <body>
- <script> const library = document.createElement('sidekick-library') 
-  library.config = { base: '/docs/library/blocks.json', } 
-  document.body.prepend(library) </script>
+    <script
+      type="module"
+      src="https://www.aem.live/tools/sidekick/library/index.js"
+    ></script>
+    <script>
+      const library = document.createElement('sidekick-library')
+      library.config = {
+        base: '/docs/library/blocks.json',
+      }
+
+      document.body.prepend(library)
+    </script>
   </body>
 </html>
