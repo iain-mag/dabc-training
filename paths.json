@@ -1,6 +1,6 @@
 {
   "mappings": [
-    "/content/dabc-training/:/",
-    "/content/dabc-training/headers:/.helix/headers.json"
+    "/content/dabc-training/headers:/.helix/headers.json",
+    "/content/dabc-training/:/"
   ]
 }
